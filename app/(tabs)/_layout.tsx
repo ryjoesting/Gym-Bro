@@ -1,10 +1,16 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
+import { Colors, Typography } from 'react-native-ui-lib';
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'red' }}>
+    <Tabs screenOptions={{ 
+      tabBarActiveTintColor: Colors.$iconPrimary, 
+      headerStyle: {backgroundColor: Colors.$backgroundPrimaryHeavy},
+      headerTintColor: Colors.$textDefaultLight,
+      headerTitleStyle: {fontWeight: 'light'}
+      }}>
       <Tabs.Screen
         name="index"
         options={{

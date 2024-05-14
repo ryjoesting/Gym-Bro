@@ -1,0 +1,7 @@
+NOTES: For use by developer team.
+
+Core tech stack: Expo, Expo Router, TypeScript, react-native-ui-lib (RNUILib)
+
+Ryan:
+- Working on routing cards to stack pages
+- Need to work on UI/UX design, look & feel --> theme out RNUILib 
