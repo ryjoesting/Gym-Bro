@@ -19,6 +19,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="data"
+        options={{
+          title: 'Data',
+          tabBarIcon: ({ color }) => <FontAwesome size={36} name="line-chart" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
