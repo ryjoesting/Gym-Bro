@@ -1,6 +1,6 @@
 import { ScrollView } from 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Link, useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import { Card, Text } from 'react-native-ui-lib';
 
 interface WorkoutCardProps {
@@ -12,11 +12,11 @@ interface WorkoutCardProps {
 function WorkoutCard(props: WorkoutCardProps) {
     const { height, width, title} = props;
 
-    const router = useRouter();
+    const cardBorderRadius = 20;
 
     return (
         <Link href={'home/details'} asChild>
-          <Card center flex width={width} height={height}>
+          <Card center flex width={width} height={height} borderRadius={cardBorderRadius} marginB-8 marginT-8>
               <Text text60BO>{title}</Text>
           </Card>
         </Link>
