@@ -1,22 +1,20 @@
-import { View, Button, Text, TextField, TouchableOpacity } from "react-native-ui-lib"
+import { View, Button, Text, TextField } from "react-native-ui-lib"
 import { router } from "expo-router"
 import { useState } from "react";
 
-// Main landing for app launch
-// Will need to check auth here, then skip to main application
-// Adding this for now, needs TODO later on
+// Signup page for the app
 
 export default function LoginScreen() {
     const [email, onChangeEmail] = useState('');
     const [pass, onChangePass] = useState('');
 
-    const handleLogin = () => {
-        router.replace('/(tabs)/home');
+    const handleSignup = () => {
+        router.replace('/');
     };
 
     return (
         <View flex style={{justifyContent: 'center',alignItems: 'center'}}>
-            <Text heading primaryColor>Hi There!</Text>
+            <Text heading primaryColor>Sign Up!</Text>
             <TextField
                 placeholder={'Email'}
                 onChangeText={onChangeEmail}
@@ -32,8 +30,8 @@ export default function LoginScreen() {
                 flex
                 marginV-12
             />
-            <Button body primaryColor onPress={handleLogin}><Text white body>Login</Text></Button>
-            <TouchableOpacity flex bottom center onPress={()=>{router.replace('/signup')}}><Text primaryColor body>Don't have an account? Sign up</Text></TouchableOpacity>
+            <Button body primaryColor onPress={handleSignup}><Text white body>Signup</Text></Button>
+            <Text>{email}</Text>
         </View>
     )
 }

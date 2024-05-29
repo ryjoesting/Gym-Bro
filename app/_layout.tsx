@@ -6,8 +6,8 @@ import { Typography, Colors, Spacings } from 'react-native-ui-lib';
 function initStyles() {
     Typography.loadTypographies({
         heading: {fontSize: 36, fontWeight: '600', fontFamily: 'Lusitana_700Bold'},
-        subheading: {fontSize: 28, fontWeight: '500'},
-        body: {fontSize: 18, fontWeight: '400'} 
+        subheading: {fontSize: 28, fontWeight: '500', fontFamily: 'Lusitana_400Regular'},
+        body: {fontSize: 18, fontWeight: '400', fontFamily: 'Lusitana_400Regular'}, 
     });
     Colors.loadColors({
         primaryColor: '#5a48f5',
@@ -40,6 +40,7 @@ export default function AppLayoutRoot() {
     <Stack>
       <Stack.Screen name='index' options={{ headerShown: false}} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name='signup' options={{ headerShown: false}} />
     </Stack>
   );
 }
