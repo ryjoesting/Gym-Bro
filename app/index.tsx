@@ -7,7 +7,6 @@ import { useState } from "react";
 // Adding this for now, needs TODO later on
 
 export default function LoginScreen() {
-
     const [email, onChangeEmail] = useState('');
     const [pass, onChangePass] = useState('');
 
@@ -18,6 +17,7 @@ export default function LoginScreen() {
     return (
         <View flex style={{justifyContent: 'center',
                             alignItems: 'center'}}>
+            <Text heading primaryColor>Hi There!</Text>
             <TextField
                 placeholder={'Email'}
                 onChangeText={onChangeEmail}
