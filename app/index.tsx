@@ -1,6 +1,7 @@
 import { View, Button, Text, TextField, TouchableOpacity } from "react-native-ui-lib"
 import { router } from "expo-router"
 import { useState } from "react";
+import { auth } from '../firebase';
 
 // Main landing for app launch
 // Will need to check auth here, then skip to main application
