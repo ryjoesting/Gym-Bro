@@ -3,6 +3,8 @@ import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Switch } from 'react
 import { View, Text, TextField, Colors } from 'react-native-ui-lib';
 import { router } from 'expo-router';
 import loginStyles from './../assets/styles/loginStyles';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 const logo = require("./../assets/Weightlifter.png");
 // const facebook = require("../../assets/facebook.png")
 // const linkedin = require("../../assets/linkedin.png")
@@ -14,6 +16,20 @@ export default function LoginScreen() {
     const [ password, setPassword ] =  useState("");
     
     const styles = loginStyles;
+    const auth = getAuth();
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, username, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            // Navigate to app
+
+        })
+        .catch( (error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // Console log these?
+        })
+    }
 
 return (
     <View backgroundColor='white' flex>
