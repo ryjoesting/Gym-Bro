@@ -1,40 +1,61 @@
-import { View, Button, Text, TextField, TouchableOpacity } from "react-native-ui-lib"
-import { router } from "expo-router"
-import { useState } from "react";
-import { auth } from '../firebase';
-
-// Main landing for app launch
-// Will need to check auth here, then skip to main application
-// Adding this for now, needs TODO later on
+import React, { useState } from 'react';
+import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Switch } from 'react-native';
+import { View, Text, TextField, Colors } from 'react-native-ui-lib';
+import { router } from 'expo-router';
+import loginStyles from './../assets/styles/loginStyles';
+const logo = require("./../assets/Weightlifter.png");
+// const facebook = require("../../assets/facebook.png")
+// const linkedin = require("../../assets/linkedin.png")
+// const tiktok = require("../../assets/tiktok.png")
 
 export default function LoginScreen() {
-    const [email, onChangeEmail] = useState('');
-    const [pass, onChangePass] = useState('');
+    const [ click, setClick ] = useState(false);
+    const [ username, setUsername ]=  useState("");
+    const [ password, setPassword ] =  useState("");
+    
+    const styles = loginStyles;
 
-    const handleLogin = () => {
-        router.replace('/(tabs)/home');
-    };
+return (
+    <View backgroundColor='white' flex>
+        <SafeAreaView>
+            <View paddingT-70 centerH>
+                <Image source={logo} style={styles.image} resizeMode='contain' />
+                <Text heading marginT-24>GymBro</Text>
+                <Text body margin-24>Welcome to the party.</Text>
 
-    return (
-        <View flex style={{justifyContent: 'center',alignItems: 'center'}}>
-            <Text heading primaryColor>Hi There!</Text>
-            <TextField
-                placeholder={'Email'}
-                onChangeText={onChangeEmail}
-                floatingPlaceholder
-                body
-                marginV-12
-            />
-            <TextField
-                placeholder={'Password'}
-                onChangeText={onChangePass}
-                floatingPlaceholder
-                body
-                flex
-                marginV-12
-            />
-            <Button body primaryColor onPress={handleLogin}><Text white body>Login</Text></Button>
-            <TouchableOpacity flex bottom center onPress={()=>{router.replace('/signup')}}><Text primaryColor body>Don't have an account? Sign up</Text></TouchableOpacity>
-        </View>
-    )
+                <View style={{width: '100%', gap: 12}} paddingH-36>
+                    <TextField style={styles.input} paddingH-24 placeholder='Email' body value={username} onChangeText={setUsername} autoCorrect={false} autoCapitalize='none' />
+                    <TextField style={styles.input} paddingH-24 placeholder='Password' body secureTextEntry value={password} onChangeText={setPassword} autoCorrect={false} autoCapitalize='none'/>
+                </View>
+
+                <View style={styles.rememberView}>
+                    <View style={styles.switch} marginV-12>
+                        <Switch  value={click} onValueChange={setClick} thumbColor={Colors.$backgroundPrimaryHeavy} trackColor={{true : Colors.primaryColor , false : "gray"}} />
+                        <Text body>Remember Me</Text>
+                    </View>
+                    <View>
+                        <Pressable onPress={() => Alert.alert("Forget Password!")}>
+                            <Text body primaryColor>Forgot Password?</Text>
+                        </Pressable>
+                    </View>
+                </View>
+
+                <View style={styles.buttonView} marginV-24>
+                    <Pressable style={styles.button} onPress={() => Alert.alert("Signin attempt")}>
+                        <Text body white br-6>Login</Text>
+                    </Pressable>
+                    {/* <Text style={styles.optionsText}>OR LOGIN WITH</Text> */}
+                </View>
+                
+                {/* <View style={styles.mediaIcons}>
+                        <Image source={facebook} style={styles.icons}   />
+                        <Image source={tiktok} style={styles.icons}  />
+                        <Image source={linkedin} style={styles.icons}  />
+                </View> */}
+
+                <Text style={{fontFamily: 'Lusitana_400Regular', fontSize: 30}}>Don't Have Account?<Text colorPrimary>  Sign Up</Text></Text>
+            </View>
+        </SafeAreaView>
+    </View>
+  )
 }
