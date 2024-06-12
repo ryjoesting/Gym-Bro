@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Switch } from 'react-native';
+import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Switch, Touchable } from 'react-native';
 import { View, Text, TextField, Colors } from 'react-native-ui-lib';
 import { router } from 'expo-router';
 import loginStyles from './../assets/styles/loginStyles';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const logo = require("./../assets/Weightlifter.png");
 // const facebook = require("../../assets/facebook.png")
@@ -16,17 +17,17 @@ export default function LoginScreen() {
     const [ password, setPassword ] =  useState("");
     
     const styles = loginStyles;
-    const auth = getAuth();
     const handleLogin = () => {
         signInWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             const user = userCredential.user;
             // Navigate to app
-
+            router.push('/home');
         })
         .catch( (error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            Alert.alert('Invalid Email or Password');
             // Console log these?
         })
     }
@@ -55,12 +56,11 @@ return (
                         </Pressable>
                     </View>
                 </View>
-
+                {/* // Login Button */}
                 <View style={styles.buttonView} marginV-24>
-                    <Pressable style={styles.button} onPress={() => Alert.alert("Signin attempt")}>
+                    <Pressable style={styles.button} onPress={handleLogin}>
                         <Text body white br-6>Login</Text>
                     </Pressable>
-                    {/* <Text style={styles.optionsText}>OR LOGIN WITH</Text> */}
                 </View>
                 
                 {/* <View style={styles.mediaIcons}>
@@ -69,7 +69,7 @@ return (
                         <Image source={linkedin} style={styles.icons}  />
                 </View> */}
 
-                <Text style={{fontFamily: 'Lusitana_400Regular', fontSize: 30}}>Don't Have Account?<Text colorPrimary>  Sign Up</Text></Text>
+                <Pressable onPress={() => router.push('/signup')}><Text style={{fontFamily: 'Lusitana_400Regular', fontSize: 14}}>Don't Have Account?<Text primaryColor>  Sign Up</Text></Text></Pressable>
             </View>
         </SafeAreaView>
     </View>

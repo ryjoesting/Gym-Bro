@@ -54,6 +54,7 @@ return (
                 </View> */}
 
                 {/* <Text style={styles.footerText}>Don't Have Account?<Text style={styles.signup}>  Sign Up</Text></Text> */}
+                <Pressable onPress={() => router.push('/')}><Text style={{fontFamily: 'Lusitana_400Regular', fontSize: 14}}>Already have an account?<Text primaryColor>  Login</Text></Text></Pressable>
             </View>
         </SafeAreaView>
     </View>
