@@ -27,7 +27,7 @@ export default function LoginScreen() {
         .catch( (error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            Alert.alert('Invalid Email or Password');
+            Alert.alert('Uh oh...something went wrong with signup. Please try again.');
             // Console log these?
         })
     }

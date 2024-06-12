@@ -3,17 +3,36 @@ import { Alert, Image, Pressable, SafeAreaView, StyleSheet } from 'react-native'
 import { View, Text, TextField, Colors } from 'react-native-ui-lib';
 import { router } from 'expo-router';
 import loginStyles from '../assets/styles/loginStyles';
+import { auth } from './../firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+
 const logo = require("./../assets/Weightlifter.png");
 // const facebook = require("../../assets/facebook.png")
 // const linkedin = require("../../assets/linkedin.png")
 // const tiktok = require("../../assets/tiktok.png")
 
 export default function SignupScreen() {
-    const [ click, setClick ] = useState(false);
     const [ username, setUsername ]=  useState("");
     const [ password, setPassword ] =  useState("");
 
     const styles = loginStyles;
+
+    const handleSignup = () => {
+        signInWithEmailAndPassword(auth, username, password).then((userCredential) => {
+            Alert.alert("This account already exists. Redirecting to login page.");
+            router.navigate('/')
+            return;
+        })
+        .catch( (error) => {
+            createUserWithEmailAndPassword(auth, username, password).then( (userCredential) => {
+                const user = userCredential.user;
+                router.navigate('/home');
+            })
+            .catch( (error) => {
+                Alert.alert('Uh oh...something went wrong. Please try again.')
+            })
+        })
+    }
 
 return (
     <View backgroundColor='white' flex>
@@ -41,7 +60,7 @@ return (
                 </View>
 
                 <View style={styles.buttonView} marginV-24>
-                    <Pressable style={styles.button} onPress={() => Alert.alert("Login attempt")}>
+                    <Pressable style={styles.button} onPress={handleSignup}>
                         <Text body white br-6>Sign Up</Text>
                     </Pressable>
                     {/* <Text style={styles.optionsText}>OR LOGIN WITH</Text> */}
