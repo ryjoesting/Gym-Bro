@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Switch, Touchable } from 'react-native';
 import { View, Text, TextField, Colors } from 'react-native-ui-lib';
 import { router } from 'expo-router';
@@ -6,7 +6,6 @@ import loginStyles from './../assets/styles/loginStyles';
 import { auth } from './../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-const logo = require("./../assets/Weightlifter.png");
 // const facebook = require("../../assets/facebook.png")
 // const linkedin = require("../../assets/linkedin.png")
 // const tiktok = require("../../assets/tiktok.png")
@@ -36,7 +35,7 @@ return (
     <View backgroundColor='white' flex>
         <SafeAreaView>
             <View paddingT-70 centerH>
-                <Image source={logo} style={styles.image} resizeMode='contain' />
+                <Image source={require('./../assets/Weightlifter.png')} style={styles.image} />
                 <Text heading marginT-24>GymBro</Text>
                 <Text body margin-24>Welcome to the party.</Text>
 

@@ -3,7 +3,8 @@ import { Colors } from 'react-native-ui-lib';
 const loginStyles = StyleSheet.create({
     image : {
         height : 160,
-        width : 170
+        width : 170,
+        resizeMode: 'contain',
     },
     input : {
         height : 50,
