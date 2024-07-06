@@ -1,9 +1,10 @@
 import { ScrollView } from 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Link } from 'expo-router';
-import { Card, Text } from 'react-native-ui-lib';
+import { Card, Colors, Text, TouchableOpacity } from 'react-native-ui-lib';
 import { Pressable } from 'react-native';
 import { getUserDoc } from './../../../firebase'
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 interface WorkoutCardProps {
     height: number | string,
@@ -38,6 +39,30 @@ const HomeTab = () => {
             return (<WorkoutCard height={250} width={'85%'} title={'WorkoutCard' + val} key={val} />)
           })}
         </ScrollView>
+
+    {/* Hovering button that creates new workouts! */}
+    <Link href={'home/createNewWorkout'} asChild>
+      <TouchableOpacity
+        style={{
+          alignItems: 'center',
+          width: 60,
+          height: 60,
+          position: 'absolute',
+          bottom: 20,
+          right: 20,
+          backgroundColor: Colors.primaryColor,
+          borderRadius: 100,
+          elevation: 5,
+          justifyContent: 'center',
+        }}
+        onPress={() => {
+          console.log('create button pressed on home page')
+        }}
+      >
+        
+          <FontAwesome size={18} name="plus" color="white" />        
+      </TouchableOpacity>
+    </Link>
     </GestureHandlerRootView>
   )
 }

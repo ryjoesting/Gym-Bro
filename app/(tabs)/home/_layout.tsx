@@ -13,6 +13,7 @@ export default function _layout() {
             }} 
             />
             <Stack.Screen name='details' options={{ title: 'Workout Details'}} />
+            <Stack.Screen name='createNewWorkout' options={{ title: 'Create New Workout'}} />
         </Stack>
     )
 }
