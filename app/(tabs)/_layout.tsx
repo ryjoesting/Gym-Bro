@@ -6,7 +6,7 @@ import { Colors, Typography } from 'react-native-ui-lib';
 export default function TabLayout() {
 
   // Change this to adjust icon size of tab bar
-  const iconSize = 42;
+  const iconSize = 30;
 
   return (
     // Sets up Tab Navigator. Use screen options to adjust.

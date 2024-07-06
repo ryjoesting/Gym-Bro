@@ -3,29 +3,48 @@ import { Alert, Image, Pressable, SafeAreaView, StyleSheet } from 'react-native'
 import { View, Text, TextField, Colors } from 'react-native-ui-lib';
 import { router } from 'expo-router';
 import loginStyles from '../assets/styles/loginStyles';
-import { auth } from './../firebase';
+import { addUser, auth, db } from './../firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 
 const logo = require("./../assets/Weightlifter.png");
 // const facebook = require("../../assets/facebook.png")
 // const linkedin = require("../../assets/linkedin.png")
 // const tiktok = require("../../assets/tiktok.png")
 
+// Function to create a user document in Firestore on signup
+const createUserDocOnSignup = async (uid: string, firstName: string, email: string): Promise<void> => {
+  const userDocRef = doc(db, "users", uid);
+  const userData = {
+    firstName: firstName,
+    email: email,
+    createdAt: new Date().toISOString(),
+  };
+  try {
+    await setDoc(userDocRef, userData);
+    console.log("User document created successfully.");
+  } catch (error) {
+    console.error("Error creating user document:", error);
+  }
+};
+
 export default function SignupScreen() {
-    const [ username, setUsername ]=  useState("");
+    const [ email, setEmail ]=  useState("");
     const [ password, setPassword ] =  useState("");
+    const [ firstName, setFirstName ] = useState("");
 
     const styles = loginStyles;
 
     const handleSignup = () => {
-        signInWithEmailAndPassword(auth, username, password).then((userCredential) => {
+        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
             Alert.alert("This account already exists. Redirecting to login page.");
             router.navigate('/')
             return;
         })
         .catch( (error) => {
-            createUserWithEmailAndPassword(auth, username, password).then( (userCredential) => {
+            createUserWithEmailAndPassword(auth, email, password).then( (userCredential) => {
                 const user = userCredential.user;
+                createUserDocOnSignup(user.uid, firstName, email);
                 router.navigate('/home');
             })
             .catch( (error) => {
@@ -43,7 +62,8 @@ return (
                 <Text body margin-24>We're happy you're here.</Text>
 
                 <View style={{width: '100%', gap: 12}} paddingH-36>
-                    <TextField style={styles.input} paddingH-24 placeholder='Email' body value={username} onChangeText={setUsername} autoCorrect={false} autoCapitalize='none' />
+                    <TextField style={styles.input} paddingH-24 placeholder='First Name' body value={firstName} onChangeText={setFirstName} autoCorrect={false}/>
+                    <TextField style={styles.input} paddingH-24 placeholder='Email' body value={email} onChangeText={setEmail} autoCorrect={false} autoCapitalize='none' />
                     <TextField style={styles.input} paddingH-24 placeholder='Password' body secureTextEntry value={password} onChangeText={setPassword} autoCorrect={false} autoCapitalize='none'/>
                 </View>
 

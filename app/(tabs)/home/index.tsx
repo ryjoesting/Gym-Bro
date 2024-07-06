@@ -2,6 +2,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Link } from 'expo-router';
 import { Card, Text } from 'react-native-ui-lib';
+import { Pressable } from 'react-native';
+import { getUserDoc } from './../../../firebase'
 
 interface WorkoutCardProps {
     height: number | string,
@@ -17,7 +19,7 @@ function WorkoutCard(props: WorkoutCardProps) {
     return (
         <Link href={'home/details'} asChild>
           <Card center flex width={width} height={height} borderRadius={cardBorderRadius} marginB-8 marginT-8>
-              <Text text60BO>{title}</Text>
+              <Pressable onPress={getUserDoc}><Text text60BO>{title}</Text></Pressable>
           </Card>
         </Link>
           
