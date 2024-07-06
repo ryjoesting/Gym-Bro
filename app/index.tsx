@@ -69,6 +69,7 @@ return (
                 </View> */}
 
                 <Pressable onPress={() => router.push('/signup')}><Text style={{fontFamily: 'Lusitana_400Regular', fontSize: 14}}>Don't Have Account?<Text primaryColor>  Sign Up</Text></Text></Pressable>
+                <Pressable onPress={() => {setUsername('ryan@bama.com'); setPassword('alabama');}}><Text style={{fontFamily: 'Lusitana_400Regular', fontSize: 14}}>Don't Have Account?<Text primaryColor>  CheatLogin</Text></Text></Pressable>
             </View>
         </SafeAreaView>
     </View>
