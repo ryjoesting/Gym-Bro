@@ -71,12 +71,14 @@ export default function createNewWorkoutScreen() {
     }
 
     return (
-        <View style={styles.container}>
-            <ScrollView style={{width: '80%'}}>
-                <Exercises /> 
-                <AddButton /> 
-            </ScrollView>
-        </View>
-                
-    )
+    <View style={styles.container}>
+            <ScrollView style={{width: '100%'}}>
+            <View style={{width: '80%'}}>
+                <Exercises />
+                <AddButton />
+            </View>
+        </ScrollView>
+    </View>
+        
+)
 }

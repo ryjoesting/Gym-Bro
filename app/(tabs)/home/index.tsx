@@ -30,13 +30,13 @@ function WorkoutCard(props: WorkoutCardProps) {
 
 const HomeTab = () => {
 
-  const arr = [1,2,3];
-
+  const arr = [0,1,2];
+  const names = ['Leg Workout', 'Chest Workout', 'Back Workout']
   return (
     <GestureHandlerRootView style={{flex: 1}}>
         <ScrollView style={{flex:1}} contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}>
           {arr.map( (val) => {
-            return (<WorkoutCard height={250} width={'85%'} title={'WorkoutCard' + val} key={val} />)
+            return (<WorkoutCard height={250} width={'85%'} title={names[val]} key={val} />)
           })}
         </ScrollView>
 
